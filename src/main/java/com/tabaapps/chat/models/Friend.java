@@ -11,8 +11,6 @@ import lombok.Setter;
 @Getter
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","friends_with"}))
 public class Friend extends Model{
-
-
     public Friend(){
         this.accepted = false;
     }
@@ -27,5 +25,4 @@ public class Friend extends Model{
     private User friendsWith;
 
     private boolean accepted;
-
 }

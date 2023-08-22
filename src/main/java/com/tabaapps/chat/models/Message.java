@@ -15,7 +15,6 @@ import java.util.List;
 @Setter
 @Getter
 public class Message extends Model{
-
     public Message(){
         this.setRead(false);
     }
@@ -27,7 +26,6 @@ public class Message extends Model{
     @ManyToOne
     @JoinColumn(name = "to_user_id")
     private User to;
-
 
     @Column(nullable = false)
     private String content;

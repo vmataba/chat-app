@@ -37,7 +37,6 @@ public class ChatService {
         newFriend.setFriendsWith(friend);
         newFriend.setCreatedBy(friend);
         return this.friendRepository.save(newFriend);
-
     }
 
     public Friend acceptFriend(Long userId, Long with, boolean accepted) throws BaseException {
@@ -51,7 +50,6 @@ public class ChatService {
     }
 
     public Long removeFriend(Long userId, Long with) throws BaseException {
-
         User user = this.userRepository.findById(userId).orElseThrow(() -> new BaseException(HttpStatus.BAD_REQUEST.value(), "User is not found"));
         User userFriend = this.userRepository.findById(with).orElseThrow(() -> new BaseException(HttpStatus.BAD_REQUEST.value(), "Friend is not found"));
         Friend friend = this.friendRepository.findByUserAndFriendsWith(user, userFriend).orElseThrow(() -> new BaseException(HttpStatus.BAD_REQUEST.value(), "Friendship does not exist"));

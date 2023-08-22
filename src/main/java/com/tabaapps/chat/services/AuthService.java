@@ -13,10 +13,8 @@ import java.time.LocalDateTime;
 
 @Service
 public class AuthService {
-
     @Autowired
     private UserRepository userRepository;
-
     public User signup(User user){
         return this.userRepository.save(user);
     }
@@ -30,8 +28,6 @@ public class AuthService {
         user.setUpdatedBy(user);
         return this.userRepository.save(user);
     }
-
-
     public boolean logout(String username) throws BaseException{
         User user = this.userRepository.findByEmail(username).orElseThrow(() -> new BaseException(HttpStatus.BAD_REQUEST.value(),"User does not exist"));
         user.setOnline(false);
@@ -40,5 +36,4 @@ public class AuthService {
         userRepository.save(user);
         return true;
     }
-
 }
