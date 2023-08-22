@@ -27,4 +27,12 @@ public class AuthController {
         return ResponseEntity.ok(this.authService.login(textCredentialsBundle[0],textCredentialsBundle[1]));
     }
 
+    @GetMapping(path = "/logout")
+    public ResponseEntity<?> logout(@RequestHeader("Authorization") String credentials) throws Exception{
+        byte[] credentialsBytes = Base64.getDecoder().decode(credentials.replace("Basic ",""));
+        String textCredentials = new String(credentialsBytes);
+        String[] textCredentialsBundle = textCredentials.split(":");
+        return ResponseEntity.ok(this.authService.logout(textCredentialsBundle[0]));
+    }
+
 }

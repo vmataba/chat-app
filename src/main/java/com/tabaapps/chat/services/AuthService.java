@@ -32,4 +32,13 @@ public class AuthService {
     }
 
 
+    public boolean logout(String username) throws BaseException{
+        User user = this.userRepository.findByEmail(username).orElseThrow(() -> new BaseException(HttpStatus.BAD_REQUEST.value(),"User does not exist"));
+        user.setOnline(false);
+        user.setUpdatedAt(LocalDateTime.now());
+        user.setUpdatedBy(user);
+        userRepository.save(user);
+        return true;
+    }
+
 }
